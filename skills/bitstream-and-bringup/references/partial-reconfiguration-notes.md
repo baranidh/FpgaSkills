@@ -1,0 +1,5 @@
+# Partial reconfiguration — pointer, not a full flow
+
+Partial reconfiguration (PR) is a substantially larger topic than this skill covers: it requires reconfigurable partition definitions, static/PR region floorplanning with Pblocks dedicated to PR (distinct from the timing-closure floorplanning in `../../timing-closure-ultrascale/references/pblock-floorplanning.md`), per-configuration bitstream generation, and a specific project-mode-adjacent Vivado flow that doesn't map cleanly onto the non-project batch flow used elsewhere in this library.
+
+If a project genuinely needs PR (e.g. swapping a processing personality at runtime without a full device reconfiguration), treat it as a separate research/planning task and consult Xilinx's dedicated guide (**UG909: Vivado Design Suite User Guide — Partial Reconfiguration**) rather than expecting this note to be sufficient — the constraints and floorplanning discipline for PR regions differ enough from the standard flow in this library that misapplying standard-flow assumptions (e.g. this library's Pblock sizing guidance) to a PR region boundary is a common source of PR-specific bring-up failures.

@@ -1,0 +1,18 @@
+# cocotb Makefile - Verilator target.
+# Fast, open-source, license-free - good default for local iteration and CI.
+# Verilator is a 2-state simulator (no X) and SystemVerilog support is a
+# subset of a full commercial simulator's - fall back to Makefile.xsim or
+# Makefile.questa for constructs Verilator rejects.
+
+TOPLEVEL_LANG ?= verilog
+SIM ?= verilator
+
+TOPLEVEL   = dut_top
+MODULE     = test_dut
+
+VERILOG_SOURCES = $(shell find ../rtl -name "*.sv" -o -name "*.v")
+
+EXTRA_ARGS += --trace --trace-structs
+COMPILE_ARGS += -Wno-fatal
+
+include $(shell cocotb-config --makefiles)/Makefile.sim

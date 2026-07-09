@@ -1,0 +1,21 @@
+{
+  "name": "fpga-skills",
+  "description": "Xilinx UltraScale+ FPGA development lifecycle skills: functional spec capture, RTL authoring, UVM and cocotb testbench generation, functional coverage closure, simulation, Vivado synthesis/implementation, timing closure at 322/644 MHz clock families, bitstream generation and bring-up, ultra-low-latency transceiver design, a market order-entry spec-to-simulation worked pipeline, and pcap-based TCP order-entry traffic analysis for replay-based verification. Also includes one domain-agnostic meta-skill (skill-library-authoring) documenting how this plugin's own skills were organized.",
+  "version": "0.1.0",
+  "author": {
+    "name": "baranidh"
+  },
+  "keywords": [
+    "fpga",
+    "xilinx",
+    "ultrascale-plus",
+    "vivado",
+    "timing-closure",
+    "uvm",
+    "cocotb",
+    "rtl",
+    "verification",
+    "low-latency",
+    "pcap"
+  ]
+}
