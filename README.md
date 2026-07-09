@@ -31,6 +31,10 @@ Claude then picks up the relevant skill automatically based on what you ask — 
 | `market-order-entry-conveyor` | Capstone worked example: chains the above into one spec-to-RTL-to-cocotb-TB-to-coverage-to-sim pipeline for an ultra-low-latency order-entry gateway, using a generic illustrative message format. |
 | `pcap-traffic-analysis` | Analyzes real `.pcap` captures of TCP order-entry traffic: TCP stream reassembly, order-entry field decoding, order chain extraction with anomaly detection, capture-timestamp latency analysis (with an explicit accuracy caveat), and converting captured traffic into cocotb replay stimulus. |
 
+## Meta skill (not FPGA content)
+
+`skills/skill-library-authoring/` is **domain-agnostic** — it documents how the 13 FPGA skills above were themselves organized into this library (shared-fact placement, a relative-path depth rule, a batch verification script), not an FPGA topic. It's included here because this repo is where it was written, not because it belongs in the FPGA catalog above — it's intentionally left out of that table and out of `fpga-dev-lifecycle`'s stage routing. It's a companion to the single-skill-authoring `skill-creator` skill (commonly available separately), not a replacement for it. If you install this plugin purely for FPGA work, this skill simply won't trigger on FPGA-related requests.
+
 ## Lifecycle at a glance
 
 ```
