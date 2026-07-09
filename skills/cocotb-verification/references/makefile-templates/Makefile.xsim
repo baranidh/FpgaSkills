@@ -1,0 +1,17 @@
+# cocotb Makefile - Vivado xsim target.
+# Use when the project is already Vivado-centric, needs no separate
+# simulator license, or needs full SystemVerilog/UVM interop that
+# Verilator doesn't support.
+
+TOPLEVEL_LANG ?= verilog
+SIM ?= xsim
+
+TOPLEVEL   = dut_top
+MODULE     = test_dut
+
+VERILOG_SOURCES = $(shell find ../rtl -name "*.sv" -o -name "*.v")
+
+# xsim-specific: point at the Vivado install if not already on PATH
+# export XILINX_VIVADO ?= /tools/Xilinx/Vivado/2024.1
+
+include $(shell cocotb-config --makefiles)/Makefile.sim

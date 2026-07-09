@@ -1,0 +1,17 @@
+# cocotb Makefile - Questa target.
+# Use for large regressions or when Questa-specific UVM/coverage tooling
+# is already the project's standard, and a license is available.
+
+TOPLEVEL_LANG ?= verilog
+SIM ?= questa
+
+TOPLEVEL   = dut_top
+MODULE     = test_dut
+
+VERILOG_SOURCES = $(shell find ../rtl -name "*.sv" -o -name "*.v")
+
+# Questa-specific: pass through UVM/coverage options as needed
+SIM_ARGS += -coverage
+COMPILE_ARGS += +acc
+
+include $(shell cocotb-config --makefiles)/Makefile.sim
