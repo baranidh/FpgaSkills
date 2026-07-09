@@ -7,7 +7,7 @@
     {
       "name": "fpga-skills",
       "source": "./",
-      "description": "Xilinx UltraScale+ FPGA development lifecycle skills covering spec, RTL, UVM/cocotb testbenches, functional coverage, simulation, synthesis, timing closure at 322/644 MHz, bitstream bring-up, ultra-low-latency transceivers, and a market order-entry spec-to-sim worked pipeline."
+      "description": "Xilinx UltraScale+ FPGA development lifecycle skills covering spec, RTL, UVM/cocotb testbenches, functional coverage, simulation, synthesis, timing closure at 322/644 MHz, bitstream bring-up, ultra-low-latency transceivers, a market order-entry spec-to-sim worked pipeline, and pcap traffic analysis."
     }
   ]
 }

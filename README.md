@@ -1,6 +1,6 @@
 # FpgaSkills
 
-A Claude Code skill library for the Xilinx UltraScale+ FPGA development lifecycle: functional spec correctness, RTL authoring, UVM and cocotb testbench generation, functional coverage closure, simulation, Vivado synthesis/implementation, timing closure at 322.265625 MHz and 644.53125 MHz clock families, bitstream generation and hardware bring-up, ultra-low-latency transceiver design, and a market order-entry spec-to-simulation worked pipeline.
+A Claude Code skill library for the Xilinx UltraScale+ FPGA development lifecycle: functional spec correctness, RTL authoring, UVM and cocotb testbench generation, functional coverage closure, simulation, Vivado synthesis/implementation, timing closure at 322.265625 MHz and 644.53125 MHz clock families, bitstream generation and hardware bring-up, ultra-low-latency transceiver design, a market order-entry spec-to-simulation worked pipeline, and pcap-based TCP order-entry traffic analysis for replay-based verification.
 
 ## Install
 
@@ -29,6 +29,7 @@ Claude then picks up the relevant skill automatically based on what you ask — 
 | `bitstream-and-bringup` | Bitstream generation options, ILA/VIO debug core insertion, hardware bring-up checklist, a partial-reconfiguration pointer. |
 | `ultra-low-latency-transceivers` | GTY/GTM configuration for the 322/644 MHz-class frequency families, cut-through datapath architecture, latency-budget accounting, Aurora/Interlaken/JESD204 worked examples. |
 | `market-order-entry-conveyor` | Capstone worked example: chains the above into one spec-to-RTL-to-cocotb-TB-to-coverage-to-sim pipeline for an ultra-low-latency order-entry gateway, using a generic illustrative message format. |
+| `pcap-traffic-analysis` | Analyzes real `.pcap` captures of TCP order-entry traffic: TCP stream reassembly, order-entry field decoding, order chain extraction with anomaly detection, capture-timestamp latency analysis (with an explicit accuracy caveat), and converting captured traffic into cocotb replay stimulus. |
 
 ## Lifecycle at a glance
 
@@ -40,6 +41,8 @@ spec --> RTL --> testbench (UVM or cocotb) <--> simulation <--> coverage closure
 ```
 
 Stages 3-5 cycle (write test -> simulate -> find a coverage hole -> add test -> repeat); stages 6-7 cycle (implementation reveals a timing failure -> RTL/XDC change -> re-implement). See `skills/fpga-dev-lifecycle/SKILL.md` for entry/exit gate criteria per stage.
+
+Once real traffic exists (a lab capture or hardware bring-up session), `pcap-traffic-analysis` closes the loop back into the coverage/simulation stages: anomalies found in real traffic become coverage goals, and decoded captures can be replayed as cocotb stimulus alongside synthetic tests.
 
 ## Known limitation
 

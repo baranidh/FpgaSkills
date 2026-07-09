@@ -20,13 +20,14 @@ This is the router for the rest of the library. Read this first when a task does
 | 7. Timing closure | `timing-closure-ultrascale` | Post-route timing report available | WNS ≥ 0 and WHS ≥ 0 in every path group, no exceptions masking a real violation |
 | 8. Bitstream & bring-up | `bitstream-and-bringup` | Timing closed | Bitstream generated with debug cores as needed, hardware bring-up checklist passed |
 | (cross-cutting) | `ultra-low-latency-transceivers` | Any stage touching GTY/GTM or a 322/644 MHz-class datapath | Latency budget accounted for end-to-end |
+| (cross-cutting) | `pcap-traffic-analysis` | Real captured traffic exists (lab tap, SPAN port, hardware bring-up) | Decoded/chain-extracted capture cross-checked against the RTL's expected behavior; anomalies fed back into coverage goals |
 | (worked example) | `market-order-entry-conveyor` | Illustrates stages 1-5 chained into one automated pipeline for an ultra-low-latency order-entry gateway | — |
 
 ## How the loop actually runs
 
 Stages 3-5 are not strictly linear — expect to cycle: write a test, run simulation, find a coverage hole, add a test, re-run, repeat until the stage-4 exit gate is met. Stages 6-7 also cycle: implementation reveals a timing failure, you go back to RTL (stage 2) or add an XDC exception, then re-run implementation. Treat the table's ordering as gate *sequence*, not a single-pass waterfall.
 
-`ultra-low-latency-transceivers` isn't a discrete stage — pull it in whenever a block touches a GTY/GTM transceiver or must hit a 322.265625/644.53125 MHz-class frequency, from spec through timing closure.
+`ultra-low-latency-transceivers` isn't a discrete stage — pull it in whenever a block touches a GTY/GTM transceiver or must hit a 322.265625/644.53125 MHz-class frequency, from spec through timing closure. `pcap-traffic-analysis` isn't a stage either — it's a validation activity that only becomes available once real captured traffic exists (a lab capture, or hardware bring-up), and it feeds back into stage 4 (coverage) when it surfaces a real-traffic case the coverage model didn't yet cover.
 
 ## Picking a skill when it's ambiguous
 
